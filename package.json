@@ -1,0 +1,90 @@
+{
+  "name": "unknown-ui",
+  "version": "1.0.0",
+  "description": "Tree-shakable React components with CSS modules",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./Button": {
+      "types": "./dist/Button.d.ts",
+      "import": "./dist/Button.js"
+    },
+    "./TextField": {
+      "types": "./dist/TextField.d.ts",
+      "import": "./dist/TextField.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:lib": "tsc && vite build --mode lib-individual",
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --report-unused-disable-directives --max-warnings 0 --fix",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test",
+    "test:bundle": "npm run build:lib && npm run test:bundle:setup && npm run test:bundle:run",
+    "test:bundle:setup": "node scripts/setup-bundle-tests.js",
+    "test:bundle:run": "node scripts/test-bundle-sizes.js",
+    "size:check": "npm run build:lib && node scripts/check-sizes.js",
+    "dev:showcase": "vite --open",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major",
+    "prepublishOnly": "npm run build:lib && npm run test:bundle"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "typescript",
+    "css-modules",
+    "tree-shaking"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.1.1",
+    "@vitest/ui": "^0.34.6",
+    "eslint": "^9.37.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "globals": "^16.4.0",
+    "gzip-size": "^7.0.0",
+    "jsdom": "^22.1.0",
+    "typescript": "^5.2.2",
+    "typescript-eslint": "^8.46.0",
+    "vite": "^4.5.0",
+    "vite-bundle-analyzer": "^0.7.0",
+    "vite-plugin-dts": "^3.6.3",
+    "vitest": "^0.34.6"
+  }
+}
